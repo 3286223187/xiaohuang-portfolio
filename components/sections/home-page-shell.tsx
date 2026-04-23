@@ -36,37 +36,14 @@ export function HomePageShell() {
     if (!trigger) return;
 
     let frame = 0;
-    let animationFrame = 0;
-    let currentProgress = 0;
-    let targetProgress = 0;
 
     const updateVisibility = () => {
       const top = trigger.getBoundingClientRect().top;
-      const start = 184;
-      const end = -28;
+      const start = 168;
+      const end = 0;
       const rawProgress = (start - top) / (start - end);
-      targetProgress = Math.max(0, Math.min(1, rawProgress));
-
-      if (!animationFrame) {
-        const animate = () => {
-          currentProgress += (targetProgress - currentProgress) * 0.18;
-
-          if (Math.abs(targetProgress - currentProgress) < 0.001) {
-            currentProgress = targetProgress;
-          }
-
-          setContentNavProgress(currentProgress);
-
-          if (currentProgress !== targetProgress) {
-            animationFrame = requestAnimationFrame(animate);
-          } else {
-            animationFrame = 0;
-          }
-        };
-
-        animationFrame = requestAnimationFrame(animate);
-      }
-
+      const clampedProgress = Math.max(0, Math.min(1, rawProgress));
+      setContentNavProgress(clampedProgress);
     };
 
     const requestUpdate = () => {
@@ -81,23 +58,37 @@ export function HomePageShell() {
 
     return () => {
       cancelAnimationFrame(frame);
-      cancelAnimationFrame(animationFrame);
       window.removeEventListener("scroll", requestUpdate);
       window.removeEventListener("resize", requestUpdate);
     };
   }, []);
 
   return (
-    <main className="flex-1">
+    <main className="relative flex-1">
       <SiteHeader progress={contentNavProgress} />
-      <OpeningSceneSection />
-      <AboutSection />
-      <AbilityModelSection />
-      <ExperienceTimelineSection />
-      <FeaturedProjectsSection />
-      <BeyondWorkSection />
-      <ClosingSignatureSection />
-      <ContactCtaSection />
+
+      <div className="fixed inset-0 z-0">
+        <OpeningSceneSection />
+      </div>
+
+      <div className="relative z-10">
+        <div className="pointer-events-none relative h-screen" aria-hidden="true">
+          <div
+            id="hero-nav-trigger"
+            className="pointer-events-none absolute inset-x-0 bottom-0 h-px w-full"
+          />
+        </div>
+
+        <div className="relative bg-[var(--background)]">
+          <AboutSection />
+          <AbilityModelSection />
+          <ExperienceTimelineSection />
+          <FeaturedProjectsSection />
+          <BeyondWorkSection />
+          <ClosingSignatureSection />
+          <ContactCtaSection />
+        </div>
+      </div>
     </main>
   );
 }

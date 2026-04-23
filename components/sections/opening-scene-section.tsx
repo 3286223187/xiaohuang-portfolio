@@ -6,9 +6,12 @@ export function OpeningSceneSection() {
   const { openingScene, profile } = siteData;
 
   return (
-    <section id="opening-scene" className="relative z-0 bg-[var(--background)]">
+    <section
+      id="opening-scene"
+      className="relative z-0 h-full min-h-screen bg-[var(--background)]"
+    >
       <Reveal>
-        <div className="relative min-h-screen w-full overflow-hidden">
+        <div className="relative h-screen min-h-screen w-full overflow-hidden">
           <Image
             src={openingScene.visual.src}
             alt={openingScene.visual.alt}
@@ -91,12 +94,6 @@ export function OpeningSceneSection() {
           </div>
         </div>
       </Reveal>
-
-      <div
-        id="hero-nav-trigger"
-        aria-hidden="true"
-        className="pointer-events-none h-px w-full opacity-0"
-      />
     </section>
   );
 }
