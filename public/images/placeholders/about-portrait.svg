@@ -1,0 +1,15 @@
+<svg width="900" height="1200" viewBox="0 0 900 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="1200" fill="#EEF4ED"/>
+  <rect x="58" y="54" width="784" height="1092" rx="34" fill="#FAFCF7"/>
+  <rect x="118" y="122" width="664" height="956" rx="26" fill="#DDE8DE"/>
+  <ellipse cx="454" cy="414" rx="152" ry="176" fill="#C8D6C8"/>
+  <path d="M332 432C332 363.516 387.516 308 456 308V308C524.484 308 580 363.516 580 432V526H332V432Z" fill="#A6B9A7"/>
+  <rect x="284" y="594" width="340" height="324" rx="160" fill="#EDF3EA"/>
+  <rect x="244" y="870" width="420" height="168" rx="84" fill="#C6D1C7"/>
+  <rect x="188" y="948" width="532" height="90" rx="45" fill="#B5C4B7"/>
+  <path d="M188 150C292.334 118.908 407.019 102.55 526 104.68C603.665 106.07 676.464 116.476 744 135" stroke="#607262" stroke-opacity="0.22" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 10"/>
+  <path d="M146 1040C220.648 988.918 310.467 958.833 408 952.949C502.866 947.225 594.286 964.474 676 1002" stroke="#607262" stroke-opacity="0.18" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 12"/>
+  <path d="M686 226C716.5 258 741 295.5 759 337" stroke="#3F4E43" stroke-opacity="0.26" stroke-width="4" stroke-linecap="round"/>
+  <path d="M728 218L792 228" stroke="#BFCBBF" stroke-width="20" stroke-linecap="round" stroke-opacity="0.75"/>
+  <path d="M110 118L188 128" stroke="#D6DDC7" stroke-width="24" stroke-linecap="round" stroke-opacity="0.82"/>
+</svg>
