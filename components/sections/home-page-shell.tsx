@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useState } from "react";
-import { AbilityModelSection } from "@/components/sections/ability-model-section";
 import { AboutSection } from "@/components/sections/about-section";
-import { BeyondWorkSection } from "@/components/sections/beyond-work-section";
-import { ClosingSignatureSection } from "@/components/sections/closing-signature-section";
 import { ContactCtaSection } from "@/components/sections/contact-cta-section";
-import { ExperienceTimelineSection } from "@/components/sections/experience-timeline-section";
-import { FeaturedProjectsSection } from "@/components/sections/featured-projects-section";
 import { OpeningSceneSection } from "@/components/sections/opening-scene-section";
 import { SiteHeader } from "@/components/sections/site-header";
+
+import { NextSection } from "@/components/sections/next-section";
+import { ExperienceSection } from "@/components/sections/experience-section";
+import { PhotographySection } from "@/components/sections/photography-section";
+import { WorksPreviewSection } from "@/components/sections/works-preview-section";
+import { FooterSection } from "@/components/sections/footer-section";
 
 export function HomePageShell() {
   const [contentNavProgress, setContentNavProgress] = useState(0);
@@ -81,12 +82,12 @@ export function HomePageShell() {
 
         <div className="relative bg-[var(--background)]">
           <AboutSection />
-          <AbilityModelSection />
-          <ExperienceTimelineSection />
-          <FeaturedProjectsSection />
-          <BeyondWorkSection />
-          <ClosingSignatureSection />
+          <NextSection />
+          <ExperienceSection />
+          <WorksPreviewSection />
+          <PhotographySection />
           <ContactCtaSection />
+          <FooterSection />
         </div>
       </div>
     </main>

@@ -1,46 +1,72 @@
+"use client";
+
+import { useState, useRef, useEffect } from "react";
 import { Container } from "@/components/ui/container";
 import { Reveal } from "@/components/ui/reveal";
-import { SectionHeader } from "@/components/ui/section-header";
 import { siteData } from "@/data/site-data";
 import Image from "next/image";
 
 export function ContactCtaSection() {
   const { contacts, thankYou } = siteData;
-  const contactItems = [contacts.wechat, contacts.email, contacts.resume];
+  const [showWechatQR, setShowWechatQR] = useState(false);
+  const [showResumeMenu, setShowResumeMenu] = useState(false);
+  const [showPortfolioMenu, setShowPortfolioMenu] = useState(false);
+  const resumeMenuRef = useRef<HTMLDivElement>(null);
+  const portfolioMenuRef = useRef<HTMLDivElement>(null);
+  const contactItems = [contacts.wechat, contacts.email];
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (resumeMenuRef.current && !resumeMenuRef.current.contains(e.target as Node)) {
+        setShowResumeMenu(false);
+      }
+      if (portfolioMenuRef.current && !portfolioMenuRef.current.contains(e.target as Node)) {
+        setShowPortfolioMenu(false);
+      }
+    };
+    if (showResumeMenu || showPortfolioMenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showResumeMenu, showPortfolioMenu]);
 
   return (
-    <section id="contact-cta" className="bg-[var(--background)]">
-      <Container className="section-stage py-16 sm:py-20">
+    <section className="bg-[var(--background)]">
+      <div id="contact-cta" className="contact-cta-scroll-anchor"></div>
+      <Container className="section-stage py-24 sm:py-32">
         <Reveal>
           <div className="paper-page rounded-[2.4rem] border border-[var(--border-strong)] p-8 sm:p-10">
-            <div className="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_260px] lg:items-start">
-              <div className="space-y-8">
-                <div className="space-y-5">
-                  <p className="hand-note text-base text-[var(--accent)]">{thankYou.eyebrow}</p>
-                  <h2 className="scribble-accent max-w-3xl text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl">
+            <div className="grid gap-12 lg:grid-cols-[52%_40%] lg:gap-20 items-center">
+              <div className="max-w-[620px] space-y-5">
+                <div className="space-y-3">
+                  <p className="hand-note text-xl text-[var(--accent)]">{thankYou.eyebrow}</p>
+                  <h2 className="scribble-accent text-2xl font-semibold tracking-tight text-[var(--foreground)] sm:text-3xl">
                     {thankYou.title}
                   </h2>
-                  <p className="max-w-3xl text-xl leading-9 text-[var(--foreground)]/92">
-                    {thankYou.signature}
-                  </p>
-                  <p className="max-w-2xl text-base leading-8 text-[var(--muted-foreground)] sm:text-lg">
-                    {thankYou.description}
-                  </p>
+                  <div className="space-y-1 text-[34px] font-semibold tracking-tight text-[var(--foreground)] leading-[1.45] sm:text-[38px]">
+                    <p>我叫黄瀚晖，</p>
+                    <p className="text-[#7da4de]">「要永远保持滚烫的生命力」</p>
+                    <p>愿你也愿我。</p>
+                  </div>
                 </div>
 
-                <div className="space-y-5">
-                  <SectionHeader
-                    eyebrow={contacts.eyebrow}
-                    title={contacts.title}
-                    description={contacts.description}
-                  />
+                <div className="space-y-4">
+                  <p className="text-sm font-medium uppercase tracking-[0.2em] text-[var(--foreground)]">
+                    {contacts.title}
+                  </p>
 
-                  <div className="grid gap-4 sm:grid-cols-3">
+                  <div className="grid grid-cols-2 gap-4">
                     {contactItems.map((item) => {
+                      const isWechat = item.label === "微信";
                       const content = (
-                        <div className="paper-chip rounded-[1.5rem] border border-[var(--border)] px-5 py-5 transition-transform duration-300 hover:-translate-y-0.5 hover:border-[rgba(82,106,138,0.18)]">
-                          <p className="text-sm text-[var(--muted-foreground)]">{item.label}</p>
-                          <p className="mt-2 text-base font-medium leading-7 text-[var(--foreground)]">
+                        <div
+                          className={`rounded-xl border border-[var(--border)] px-4 py-3 transition-transform duration-300 hover:-translate-y-0.5 ${isWechat ? 'cursor-pointer' : ''}`}
+                          onClick={isWechat ? () => setShowWechatQR(true) : undefined}
+                        >
+                          <p className="text-xs text-[var(--muted-foreground)]">{item.label}</p>
+                          <p className="mt-1 text-sm font-medium text-[var(--foreground)]">
                             {item.value}
                           </p>
                         </div>
@@ -56,46 +82,122 @@ export function ContactCtaSection() {
                     })}
                   </div>
 
-                  <div className="flex flex-col gap-3 sm:flex-row">
-                    {contacts.actions.map((action) => (
-                      <a
-                        key={action.label}
-                        href={action.href}
-                        className={`inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-medium transition-all duration-200 ${
-                          action.variant === "primary"
-                            ? "bg-[var(--accent)] text-white shadow-[0_4px_12px_rgba(67,83,106,0.08)] hover:-translate-y-0.5 hover:bg-[#5b7393]"
-                            : "border border-[var(--border-strong)] bg-[var(--surface-strong)] text-[var(--foreground)] hover:border-[rgba(82,106,138,0.18)] hover:bg-[var(--accent-soft)]"
-                        }`}
+                  <div className="flex gap-4">
+                    <div className="relative" ref={resumeMenuRef}>
+                      <button
+                        onClick={() => setShowResumeMenu(!showResumeMenu)}
+                        className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] text-white hover:bg-[#5b7393] transition-all duration-200 w-[140px] h-11"
+                        style={{ padding: '0 18px', lineHeight: '1' }}
                       >
-                        {action.label}
-                      </a>
-                    ))}
+                        <svg className="w-3.5 h-3.5 inline-flex items-center flex-shrink-0" fill="none" stroke="white" viewBox="0 0 24 24" style={{ lineHeight: '1' }}>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        <span className="text-xs font-medium inline-flex items-center" style={{ lineHeight: '1' }}>简历</span>
+                      </button>
+                      {showResumeMenu && (
+                        <div className="absolute top-full mt-2 left-0 w-36 bg-white rounded-xl shadow-lg border border-[var(--border)] py-1 z-50">
+                          <button
+                            onClick={() => {
+                              window.open('/images/placeholders/黄瀚晖-简历.pdf', '_blank');
+                              setShowResumeMenu(false);
+                            }}
+                            className="w-full px-4 py-2.5 text-left text-sm text-[var(--foreground)] hover:bg-[var(--accent-soft)] transition-colors"
+                          >
+                            预览简历
+                          </button>
+                          <button
+                            onClick={() => {
+                              const link = document.createElement('a');
+                              link.href = '/images/placeholders/黄瀚晖-简历.pdf';
+                              link.download = '黄瀚晖-简历.pdf';
+                              link.click();
+                              setShowResumeMenu(false);
+                            }}
+                            className="w-full px-4 py-2.5 text-left text-sm text-[var(--foreground)] hover:bg-[var(--accent-soft)] transition-colors"
+                          >
+                            下载简历
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                    <div className="relative" ref={portfolioMenuRef}>
+                      <button
+                        onClick={() => setShowPortfolioMenu(!showPortfolioMenu)}
+                        className="inline-flex items-center justify-center gap-2 rounded-full border border-[var(--border-strong)] bg-[var(--surface-strong)] text-[var(--foreground)] hover:bg-[var(--accent-soft)] transition-all duration-200 w-[140px] h-11"
+                        style={{ padding: '0 18px', lineHeight: '1' }}
+                      >
+                        <svg className="w-3.5 h-3.5 inline-flex items-center flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ lineHeight: '1' }}>
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        <span className="text-xs font-medium inline-flex items-center" style={{ lineHeight: '1' }}>作品集</span>
+                      </button>
+                      {showPortfolioMenu && (
+                        <div className="absolute top-full mt-2 left-0 w-36 bg-white rounded-xl shadow-lg border border-[var(--border)] py-1 z-50">
+                          <button
+                            onClick={() => {
+                              window.open('/images/placeholders/黄瀚晖-AI影像作品集.pdf', '_blank');
+                              setShowPortfolioMenu(false);
+                            }}
+                            className="w-full px-4 py-2.5 text-left text-sm text-[var(--foreground)] hover:bg-[var(--accent-soft)] transition-colors"
+                          >
+                            预览作品集
+                          </button>
+                          <button
+                            onClick={() => {
+                              const link = document.createElement('a');
+                              link.href = '/images/placeholders/黄瀚晖-AI影像作品集.pdf';
+                              link.download = '黄瀚晖-AI影像作品集.pdf';
+                              link.click();
+                              setShowPortfolioMenu(false);
+                            }}
+                            className="w-full px-4 py-2.5 text-left text-sm text-[var(--foreground)] hover:bg-[var(--accent-soft)] transition-colors"
+                          >
+                            下载作品集
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <figure className="space-y-4 lg:justify-self-end lg:pt-4">
-                <div className="collage-frame overflow-hidden rounded-[1.7rem] border border-[rgba(36,49,63,0.08)] bg-[linear-gradient(180deg,rgba(253,254,255,0.94),rgba(241,245,250,0.9))] p-3 shadow-[0_6px_18px_rgba(67,83,106,0.04)]">
-                  <div className="overflow-hidden rounded-[1.2rem]">
+              <figure className="lg:justify-self-end max-w-[420px]">
+                <div className="collage-frame overflow-hidden rounded-xl border border-[rgba(36,49,63,0.08)] bg-[linear-gradient(180deg,rgba(253,254,255,0.94),rgba(241,245,250,0.9))] p-3">
+                  <div className="overflow-hidden rounded-lg">
                     <Image
                       src={thankYou.visual.src}
                       alt={thankYou.visual.alt}
-                      width={900}
-                      height={1200}
-                      className="aspect-[3/4] w-full object-cover"
+                      width={1200}
+                      height={1600}
+                      className="w-full object-cover"
                     />
                   </div>
                 </div>
-                {thankYou.visual.caption ? (
-                  <figcaption className="image-note hand-note pl-2 text-sm leading-7 text-[var(--muted-foreground)]">
-                    {thankYou.visual.caption}
-                  </figcaption>
-                ) : null}
               </figure>
             </div>
           </div>
         </Reveal>
       </Container>
+
+      {showWechatQR && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+          onClick={() => setShowWechatQR(false)}
+        >
+          <div
+            className="rounded-2xl bg-white p-4 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src="/images/placeholders/二维码.jpg"
+              alt="微信二维码"
+              width={200}
+              height={200}
+              className="w-[200px] h-[200px] object-contain"
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

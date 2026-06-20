@@ -226,23 +226,21 @@ export const siteData: SiteData = {
   navigation: [
     { label: "Home", href: "#opening-scene" },
     { label: "About", href: "#about-section" },
-    { label: "Experience", href: "#experience-timeline" },
-    { label: "Projects", href: "#featured-projects" },
-    { label: "More", href: "#beyond-work" },
+    { label: "Experience", href: "#experience-section" },
+    { label: "Photography", href: "#photography-section" },
     { label: "Contact", href: "#contact-cta" },
-    { label: "Resume", href: "#contact-cta" },
   ],
   openingScene: {
     name: "黄瀚晖",
     role: "Content, image, and project thinking",
     eyebrow: "Opening Scene",
-    title: "把表达、图像和项目感受慢慢展开。",
-    description: "审美表达为主，技术理解为辅。",
+    title: "2026\nPortfolio",
+    description: "",
     ctaLabel: "进入个人信息页",
     ctaHref: "#about-section",
     scrollHint: "向下继续看",
     visual: {
-      src: "/images/placeholders/首页图.jpg",
+      src: "/images/placeholders/首页图2.jpg",
       alt: "首页封面主视觉占位图",
       caption: "后续可直接替换为真实封面图，不需要改布局。",
       type: "image",
@@ -1108,7 +1106,7 @@ export const siteData: SiteData = {
   closingSignature: {
     eyebrow: "Signature",
     title: "我希望别人看完这个网站之后，记住的不只是我的经历，也记住我的判断方式和表达气质。",
-    signature: "把内容说清楚，把感觉放准确，把事情做完整。",
+    signature: "把看见的光，变成可以被留下的表达。",
     description:
       "这个网站先把我目前更稳定的部分放在这里：我怎么判断内容、怎么理解图像、怎么推进项目，以及为什么会持续对 AI 和数字化工具保持兴趣。如果你愿意继续了解，我很希望在下一次沟通里把这些部分讲得更具体。",
     aside:
