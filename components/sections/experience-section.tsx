@@ -515,8 +515,10 @@ export function ExperienceSection() {
               <h2 className="text-4xl font-semibold text-[var(--foreground)] mb-4 -mt-[100px] text-center">
                 AI影像项目
               </h2>
-              <p className="text-[var(--muted-foreground)] text-sm text-center max-w-2xl mt-4">
-                围绕美颜相机与美图云修 AI影像能力迭代，参与 AI写真、AI一键出片、深度虚化、纯色背景去瑕疵等项目，负责 AIGC效果评估、模型效果对比、异常 Case 分类、评测样本整理及优化反馈，协同产品、算法团队推动效果落地。
+              <p className="text-[var(--muted-foreground)] text-sm text-center" style={{ marginTop: '26px', maxWidth: '800px' }}>
+                围绕美颜相机与美图云修 AI影像能力迭代，参与 AI写真、AI一键出片、深度虚化、纯色背景去瑕疵等项目。<br />
+                负责 AIGC效果评估、模型效果对比、异常 Case 分类、评测样本整理及优化反馈，协同产品、算法团队推动效果落地。<br />
+                <span className="text-xs text-[var(--muted-foreground)]/60 font-bold">（点击图片查看项目详情）</span>
               </p>
             </Reveal>
             <Reveal delay={100}>

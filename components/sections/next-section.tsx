@@ -58,12 +58,12 @@ export function NextSection() {
                   <div className="ability-row">
                     <span className="ability-left">AI影像评估</span>
                     <span className="ability-separator">｜</span>
-                    <span className="ability-right">Case拆解</span>
+                    <span className="ability-right">素材制作</span>
                   </div>
                   <div className="ability-row">
                     <span className="ability-left">数据质检</span>
                     <span className="ability-separator">｜</span>
-                    <span className="ability-right">效果打标</span>
+                    <span className="ability-right">prompt调优</span>
                   </div>
                   <div className="ability-row">
                     <span className="ability-left">样本整理</span>

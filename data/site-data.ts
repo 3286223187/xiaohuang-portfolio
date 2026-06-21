@@ -219,7 +219,7 @@ export type SiteData = {
 
 export const siteData: SiteData = {
   meta: {
-    title: "黄瀚晖｜个人品牌主页",
+    title: "黄瀚晖｜个人主页",
     description:
       "黄瀚晖的职业导向个人品牌主页与轻作品集，用于展示审美表达、内容组织、项目完整度，以及对 AI 与数字化工具的持续探索。",
   },

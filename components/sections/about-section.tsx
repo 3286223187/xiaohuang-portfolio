@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/container";
 import { siteData } from "@/data/site-data";
 
-const tags = ["AIGC影像", "效果评估", "Case分析", "数据质检"];
+const tags = ["AIGC影像", "效果评估", "素材生产", "数据质检"];
 
 export function AboutSection() {
   const { about } = siteData;
@@ -29,7 +29,7 @@ export function AboutSection() {
                 </p>
                 <div className="space-y-3">
                   <p className="text-sm leading-6 text-[var(--muted-foreground)]">
-                    我有摄影、广告策划、新媒体运营和 AI 影像效果设计的复合背景，曾操盘自媒体账号实现从 0 到 1 的内容冷启动，并深度参与 AI 写真、一键出片等影像项目。
+                    我有<strong className="text-[var(--accent)] font-semibold">摄影、广告策划、新媒体运营和 AI 影像效果设计</strong>的复合背景，曾操盘自媒体账号实现从 0 到 1 的内容冷启动，并深度参与 AI 写真、一键出片等影像项目。
                   </p>
                   <p className="text-sm leading-6 text-[var(--muted-foreground)]">
                     在 AI 影像领域，我致力于将主观审美拆解为具体的评估标准。通过严谨的 Case 分类与数据质检，将视觉误差转化为可复盘的算法优化反馈。
