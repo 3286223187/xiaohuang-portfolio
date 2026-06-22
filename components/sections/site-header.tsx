@@ -32,10 +32,10 @@ export function SiteHeader({ progress = 1 }: SiteHeaderProps) {
   }, [showDownloadMenu]);
 
   const handleDownload = (type: "resume" | "portfolio") => {
-    const filePath = type === "resume" ? "/images/placeholders/黄瀚晖-简历.pdf" : "/images/placeholders/黄瀚晖-AI影像作品集.pdf";
+    const filePath = type === "resume" ? "/files/黄瀚晖-简历-内容运营.pdf" : "/files/黄瀚晖-作品集-内容运营.pdf";
     const link = document.createElement("a");
     link.href = filePath;
-    link.download = type === "resume" ? "黄瀚晖-简历.pdf" : "黄瀚晖-AI影像作品集.pdf";
+    link.download = type === "resume" ? "黄瀚晖-简历-内容运营.pdf" : "黄瀚晖-作品集-内容运营.pdf";
     link.click();
     setShowDownloadMenu(false);
   };

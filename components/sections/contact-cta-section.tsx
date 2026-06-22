@@ -98,7 +98,7 @@ export function ContactCtaSection() {
                         <div className="absolute top-full mt-2 left-0 w-36 bg-white rounded-xl shadow-lg border border-[var(--border)] py-1 z-50">
                           <button
                             onClick={() => {
-                              window.open('/images/placeholders/黄瀚晖-简历.pdf', '_blank');
+                              window.open('/files/黄瀚晖-简历-内容运营.pdf', '_blank');
                               setShowResumeMenu(false);
                             }}
                             className="w-full px-4 py-2.5 text-left text-sm text-[var(--foreground)] hover:bg-[var(--accent-soft)] transition-colors"
@@ -108,8 +108,8 @@ export function ContactCtaSection() {
                           <button
                             onClick={() => {
                               const link = document.createElement('a');
-                              link.href = '/images/placeholders/黄瀚晖-简历.pdf';
-                              link.download = '黄瀚晖-简历.pdf';
+                              link.href = '/files/黄瀚晖-简历-内容运营.pdf';
+                              link.download = '黄瀚晖-简历-内容运营.pdf';
                               link.click();
                               setShowResumeMenu(false);
                             }}
@@ -135,7 +135,7 @@ export function ContactCtaSection() {
                         <div className="absolute top-full mt-2 left-0 w-36 bg-white rounded-xl shadow-lg border border-[var(--border)] py-1 z-50">
                           <button
                             onClick={() => {
-                              window.open('/images/placeholders/黄瀚晖-AI影像作品集.pdf', '_blank');
+                              window.open('/files/黄瀚晖-作品集-内容运营.pdf', '_blank');
                               setShowPortfolioMenu(false);
                             }}
                             className="w-full px-4 py-2.5 text-left text-sm text-[var(--foreground)] hover:bg-[var(--accent-soft)] transition-colors"
@@ -145,8 +145,8 @@ export function ContactCtaSection() {
                           <button
                             onClick={() => {
                               const link = document.createElement('a');
-                              link.href = '/images/placeholders/黄瀚晖-AI影像作品集.pdf';
-                              link.download = '黄瀚晖-AI影像作品集.pdf';
+                              link.href = '/files/黄瀚晖-作品集-内容运营.pdf';
+                              link.download = '黄瀚晖-作品集-内容运营.pdf';
                               link.click();
                               setShowPortfolioMenu(false);
                             }}
