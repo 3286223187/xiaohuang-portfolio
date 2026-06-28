@@ -2,15 +2,22 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { renderToStaticMarkup } from "react-dom/server";
 import Home from "@/app/page";
-import ProjectPage from "@/app/projects/[slug]/page";
+import ProjectPage, { generateStaticParams } from "@/app/projects/[slug]/page";
 import { getProjectBySlug, siteData } from "@/data/site-data";
 
-test("homepage project cards link to project detail routes", () => {
+test("project detail routes are generated from featured project slugs", async () => {
+  const params = await generateStaticParams();
+  const slugs = params.map((item) => item.slug);
+
+  assert.deepEqual(slugs, siteData.featuredProjects.items.map((project) => project.slug));
+});
+
+test("homepage still renders the core personal-site shell", () => {
   const markup = renderToStaticMarkup(<Home />);
 
-  for (const project of siteData.featuredProjects.items) {
-    assert.match(markup, new RegExp(`/projects/${project.slug}`));
-  }
+  assert.match(markup, /Portfolio 2026/);
+  assert.match(markup, /Moments/);
+  assert.match(markup, /欢迎联系我进一步了解项目与经历/);
 });
 
 test("project data includes reusable detail fields for each featured project", () => {
