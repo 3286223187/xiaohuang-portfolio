@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { renderToStaticMarkup } from "react-dom/server";
 import Home from "@/app/page";
+import { worksImages } from "@/components/sections/works-preview-section";
 import { siteData } from "@/data/site-data";
 
 test("homepage renders the current homepage sections and key content", () => {
@@ -55,7 +56,16 @@ test("homepage exposes the current section order in rendered markup", () => {
 
 test("works preview uses local image assets instead of remote temporary URLs", () => {
   const markup = renderToStaticMarkup(<Home />);
+  const expectedImages = [
+    "/images/placeholders/照片集3.jpg",
+    "/images/placeholders/照片集2.jpg",
+    "/images/placeholders/照片集5.jpg",
+    "/images/placeholders/照片集4.jpg",
+    "/images/placeholders/照片集6.jpg",
+    "/images/placeholders/照片集1.jpg",
+  ];
 
+  assert.deepEqual(worksImages, expectedImages);
   assert.match(markup, /Work preview 1/);
   assert.match(markup, /Work preview 6/);
   assert.doesNotMatch(markup, /minimax-algeng-chat-tts/);

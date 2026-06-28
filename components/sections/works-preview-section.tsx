@@ -3,13 +3,13 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/reveal";
 
-const worksImages = [
-  "/images/placeholders/图片1.jpg",
-  "/images/placeholders/图片2.jpg",
-  "/images/placeholders/图片3.jpg",
-  "/images/placeholders/图片4.jpg",
-  "/images/placeholders/图片5.jpg",
-  "/images/placeholders/图片6.jpg",
+export const worksImages = [
+  "/images/placeholders/照片集3.jpg",
+  "/images/placeholders/照片集2.jpg",
+  "/images/placeholders/照片集5.jpg",
+  "/images/placeholders/照片集4.jpg",
+  "/images/placeholders/照片集6.jpg",
+  "/images/placeholders/照片集1.jpg",
 ];
 
 const baseWorks = [
